@@ -52,6 +52,14 @@
     updated 更新数据后 
     beforeDestroy 页面销毁前 
     destroyed 都为空
+  ### 8.深拷贝中json的几个缺陷
+      1.如果obj里面有时间对象，则JSON.stringify后再JSON.parse的结果，时间将只是字符串的形式，而不是时间对象；
+      2.如果obj里有RegExp、Error对象，则序列化的结果将只得到空对象；
+      3.如果obj里有函数，undefined，则序列化的结果会把函数或 undefined丢失；
+      4.如果obj里有NaN、Infinity和-Infinity，则序列化的结果会变成null；
+      5.JSON.stringify()只能序列化对象的可枚举的自有属性，例如 如果obj中的对象是有构造函数生成的， 则使用JSON.parse(JSON.stringify(obj))深拷贝后，会丢弃对象的constructor
+      6.如果对象中存在循环引用的情况也无法正确实现深拷贝。
+      7.其余深拷贝方法：Object.assign(target, source) （多层嵌套则还是出现了浅拷贝的问题）=>递归拷贝 （定义一个深拷贝函数，用递归遍历的方式进行逐层拷贝）
 ## 四.浏览器
   ### 1.浏览器的工作原理 [https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/] 有点深奥，没真没看懂，有时间再看
   ### 2.跨越  同源策略  协议+域名+端口 其中域名  解决跨越的三个方法（1.配置代理proxy ，将跨域交给后端，需要后端转换，一些静态页面就不容易实现了，关键点在后端处理上 2. 在请求头中Access-Control-Allow-Origin 配置为* Access-Control-Allow-Credentials响应头为true 同事ajax请求中withCredentials=true 3. jsonp 通过script能够跨越来实现，只能使用在get上）
@@ -69,3 +77,6 @@
     4XX 客户端错误 400 语法错误，无法识别 401 请求未经授权 403 请求不被通过，拒绝提供服务 404 请求地址错误
     5XX 服务器错误 500 服务器出错 503 服务器临时有问题，一段时间可能恢复
   ### 4.https 加密的http 原理解析 [https://mp.weixin.qq.com/s/3NKOCOeIUF2SGJnY7II9hA]
+## 七.常用的组件（插件）
+  ### 1.qs 
+      对url解析成对象
