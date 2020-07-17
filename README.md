@@ -1,4 +1,4 @@
-# 前端学习清单
+# 前端学习
 ## 一.css  [https://ashleynolan.co.uk/blog/frontend-tooling-survey-2018-results]
   ### 1.sass（功能强，使用范围广，可编辑性高）其他less postcss
   ### 2.css框架 Bootstrap Custom Framework （在vue中使用没那么高，现在需求不多）
